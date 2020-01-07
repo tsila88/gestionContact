@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <strong> Liste des contacts </strong>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label><strong> Mot clé: </strong> </label>
+                <input type="text" placeholder="Entrez le mot clé ici " [(ngModel)] = "motCle"/>
+            </div>
+
+            <table class="table table-striped">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Email</th>
+                </tr>
+
+                <tr *ngFor="let contact of pageContacts?.content ">
+
+                <td> {{ contact.id}}</td>
+                <td> {{ contact.nom}}</td>
+                <td> {{ contact.prenom}}</td>
+                <td> {{ contact.email}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
