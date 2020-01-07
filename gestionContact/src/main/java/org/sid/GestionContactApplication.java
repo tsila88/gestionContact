@@ -39,7 +39,7 @@ public class GestionContactApplication implements CommandLineRunner {
 		}
 		);
 		
-		//contactRepository.deleteAll();
+		contactRepository.deleteAll();
 		
 	}
 
