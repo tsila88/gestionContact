@@ -52,7 +52,7 @@ public class ContactRestController {
 		} else {
 			logger.info("The contacts with the id: " + id + " NOT FOUND");
 		}
-
+		
 		return contact;
 	}
 

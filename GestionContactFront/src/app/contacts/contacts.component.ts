@@ -13,18 +13,35 @@ import { ContactService } from 'src/services/contact.service';
 export class ContactsComponent implements OnInit {
 
   pageContacts: any;
-  constructor(private http: HttpClient,private contactService:ContactService) { }
+  motCle: string = "";
+  size: number = 5;
+  currentPage: number = 0;
+  pages: Array<number>;
+
+  constructor(private http: HttpClient, private contactService: ContactService) { }
 
   ngOnInit() {
-    console.log('Initialsiation ...');
 
-      this.contactService.getContacts().subscribe(data => {
-        this.pageContacts = data;
-        console.log("The request Get was sent");
-      }, err => {
-        console.log(err);
-      })
 
   }
 
+  doSearch() {
+    console.log('Initialisiation ...');
+    this.contactService.getContacts(this.motCle, this.currentPage, this.size).subscribe(data => {
+      this.pageContacts = data;
+      this.pages = new Array(data.totalPages);
+      console.log("The request Get was sent");
+    }, err => {
+      console.log(err);
+    })
+  }
+
+  searchByMotCle() {
+    this.doSearch();
+  }
+
+  gotoPage(i: number) {
+    this.currentPage = i;
+    this.doSearch();
+  }
 }

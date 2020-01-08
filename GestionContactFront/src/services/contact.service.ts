@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Contact } from 'src/models/model.contact';
 
 @Injectable()
 export class ContactService {
@@ -8,7 +9,11 @@ export class ContactService {
 
     }
 
-    getContacts() {
-        return this.http.get("http://localhost:8080/api/chercherContacts?motCle=A&size=5&page=0");
+    getContacts(motCle:string,page:number,size:number) {
+        return this.http.get("http://localhost:8080/api/chercherContacts?motCle="+motCle+"&size="+size+"&page="+page);
     }
+
+    saveContact(contact:Contact){
+        return this.http.post("http://localhost:8080/api/contacts",contact);
+      }
 }

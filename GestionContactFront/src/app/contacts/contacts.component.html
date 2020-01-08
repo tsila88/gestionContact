@@ -5,8 +5,15 @@
         </div>
         <div class="card-body">
             <div class="form-group">
-                <label><strong> Mot clé: </strong> </label>
-                <input type="text" placeholder="Entrez le mot clé ici " [(ngModel)] = "motCle"/>
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <label><strong> Mot clé: </strong> </label>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <input type="text" placeholder="Entrez le mot clé ici " [(ngModel)]="motCle" />
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <button type="button" class="btn btn-info" (click)="searchByMotCle()">Chercher</button>
+                </div>
             </div>
 
             <table class="table table-striped">
@@ -19,12 +26,21 @@
 
                 <tr *ngFor="let contact of pageContacts?.content ">
 
-                <td> {{ contact.id}}</td>
-                <td> {{ contact.nom}}</td>
-                <td> {{ contact.prenom}}</td>
-                <td> {{ contact.email}}</td>
+                    <td> {{ contact.id}}</td>
+                    <td> {{ contact.nom}}</td>
+                    <td> {{ contact.prenom}}</td>
+                    <td> {{ contact.email}}</td>
                 </tr>
             </table>
+            <div class="container">
+
+                <ul class="nav nav-pills">
+                    <li  *ngFor="let page of pages; let i=index">
+                        <a [ngClass]="{'active': i==currentPage,'nav-link': true, 'clickable':true }" (click)="gotoPage(i)">{{i}}</a>
+                    </li>
+                </ul>
+
+            </div>
         </div>
     </div>
 </div>

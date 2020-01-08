@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface ContactRepository extends JpaRepository<Contact,Long>{
 
-	@Query("select c from Contact c where c.nom like :x")
+	@Query("select c from Contact c where c.nom like :x or c.prenom like :x")
 	public Page<Contact> findContacts(@Param("x") String motCle, Pageable pageable);
 }
