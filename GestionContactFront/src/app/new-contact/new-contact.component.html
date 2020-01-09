@@ -1,23 +1,25 @@
 <div class="container">
     <div class="card" *ngIf="mode == 1">
-        <div class="card-header">
-            <strong> Ajouter un nouveau contact </strong>
+        <div class="card-header" style="color: cornflowerblue;">
+            <strong>
+                <h5> Ajouter un nouveau contact </h5>
+            </strong>
         </div>
-
         <div class="card-body">
             <div class="form-group">
                 <form #f="ngForm" (ngSubmit)="saveContact(f.value)">
 
                     <label>Nom</label>
-                    <input class="form-control" type="text" placeholder="Entrez le nom ici!" ngModel name="nom" required>
+                    <input class="form-control" type="text" placeholder="Entrez le nom ici!" ngModel name="nom"
+                        required>
                     <label>Prenom</label>
                     <input class="form-control" type="text" placeholder="Entrez le prénom ici" ngModel name="prenom"
                         required>
                     <label>Date de naissance</label>
                     <input class="form-control" type="date" ngModel name="dateNaissance" required>
                     <label>Email</label>
-                    <input class="form-control" type="email" placeholder="Entrez l'Email ici" ngModel
-                        name="contact.email" required email>
+                    <input class="form-control" type="email" placeholder="Entrez l'Email ici" ngModel name="email"
+                        required email>
                     <label>Télephone personnel</label>
                     <input class="form-control" type="text" placeholder="Entrez le numéro de téléphone ici" ngModel
                         name="tel" required>
@@ -34,10 +36,17 @@
 
 
     <div class="card" *ngIf="mode == 2">
-        <div class="card-header">
-            <strong> Confirmation d'ajout du contact </strong>
-        </div>
 
+        <div class="card-header" style="color: cornflowerblue;">
+            <strong>
+                <h5> Confirmation d'ajout du contact</h5>
+            </strong>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-primary" role="alert">
+               Le contact a bien été ajouté.
+            </div>
+        </div>
         <div class="card-body">
             <form>
                 <div class="form-group">
@@ -57,7 +66,7 @@
 
                 <div class="form-group">
                     <label><strong>Date de naissance:</strong> &nbsp;</label>
-                    <label>{{contact.dateNaissance}}</label>
+                    <label>{{contact.dateNaissance | date: 'dd/MM/yyyy'}}</label>
                 </div>
 
                 <div class="form-group">

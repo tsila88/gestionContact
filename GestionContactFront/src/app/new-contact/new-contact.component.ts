@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContactService } from 'src/services/contact.service';
 import { Contact } from 'src/models/model.contact'
 import { from } from 'rxjs';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-new-contact',
@@ -22,7 +23,7 @@ export class NewContactComponent implements OnInit {
     this.contactService.saveContact(dataForm).subscribe(
       data => {
         console.log(dataForm);
-       // this.contact=data;
+        this.contact=data;
       
         this.mode = 2;
       }, err => {
