@@ -26,7 +26,7 @@ export class ContactService {
         return this.http.put<Contact>("http://localhost:8080/api/contacts/"+contact.id,contact)
     }
 
-    deleteContact(contactId:number){
-        return this.http.delete("http://localhost:8080/api/contacts/"+contactId);
+    deleteContact(contact:Contact){
+        return this.http.delete("http://localhost:8080/api/contacts/"+contact.id);
     }
 }

@@ -30,18 +30,33 @@ export class ContactsComponent implements OnInit {
 
   doSearch() {
     console.log('Initialisiation ...');
+    console.log('Current page : '+this.currentPage);
     this.contactService.getContacts(this.motCle, this.currentPage, this.size).subscribe(data => {
+      console.log("The request Get was sent");
       this.pageContacts = data;
       this.data = data;
+      console.log(this.data);
       this.pages = new Array(this.data.totalPages);
-      console.log("The request Get was sent");
+      
     }, err => {
       console.log(err);
     })
   }
 
   searchByMotCle() {
-    this.doSearch();
+    console.log('Initialisiation ...');
+    console.log('Current page : '+this.currentPage);
+    this.currentPage = 0; //Pour mettre la première page à 0
+    this.contactService.getContacts(this.motCle, this.currentPage, this.size).subscribe(data => {
+      console.log("The request Get was sent");
+      this.pageContacts = data;
+      this.data = data;
+      console.log(this.data);
+      this.pages = new Array(this.data.totalPages);
+      
+    }, err => {
+      console.log(err);
+    })
   }
 
   gotoPage(i: number) {
@@ -52,16 +67,21 @@ export class ContactsComponent implements OnInit {
   onEditContact(contactId:number){
     this.router.navigate(['editContacts',contactId]);
   }
-  onDelete(contactId:number) {
-    this.contactService.deleteContact(contactId).subscribe(
-      data => {
-        alert("Le contact a bien été supprimé");
-        this.pageContacts.content.splice(
-          this.pageContacts.content.indexOf(c)
-        )
-      }, err =>{
+  onDelete(contact) {
 
-      }
-    )
+    let confirm = window.confirm('Etes vous sur de vouloir supprimer le contact '+contact.nom+' '+contact.prenom+' ?');
+    
+    if (confirm) {
+      this.contactService.deleteContact(contact).subscribe(
+        data => {
+          this.pageContacts.content.splice(
+            this.pageContacts.content.indexOf(contact),1
+          )
+        }, err =>{
+  
+        }
+      )
+    }
+    
   }
 }
